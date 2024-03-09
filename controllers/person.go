@@ -9,12 +9,16 @@ import(
 	"strconv"
 )
 
+var(
+	DB = database.DBSetup()
+)
+
 func GetAllPerson(c *gin.Context) {
 	var(
 		result gin.H
 	)
 
-	persons, err := repository.GetAllPerson(database.DBConnection)
+	persons, err := repository.GetAllPerson(DB)
 
 	if err!= nil {
 		result =gin.H {
@@ -37,7 +41,7 @@ func InsertPerson(c *gin.Context) {
 		panic(err)
 	}
 
-	err = repository.InsertPerson(database.DBConnection, person)
+	err = repository.InsertPerson(DB, person)
 	if err != nil {
 		panic(err)
 	}
@@ -58,7 +62,7 @@ func UpdatePerson(c *gin.Context) {
 
 	person.ID = int64(id)
 
-	err = repository.InsertPerson(database.DBConnection, person)
+	err = repository.InsertPerson(DB, person)
 	if err != nil {
 		panic(err)
 	}
@@ -74,7 +78,7 @@ func DeletePerson(c *gin.Context) {
 
 	person.ID = int64(id)
 
-	err = repository.InsertPerson(database.DBConnection, person)
+	err = repository.InsertPerson(DB, person)
 	if err != nil {
 		panic(err)
 	}
