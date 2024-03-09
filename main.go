@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"rest_api_deploy/controllers"
 
 	"github.com/gin-gonic/gin"
@@ -15,5 +16,5 @@ func main() {
 	router.PUT("/person/:id", controllers.UpdatePerson)
 	router.DELETE("/person/:id", controllers.DeletePerson)
 
-	router.Run("localhost:8000")
+	router.Run(":" + os.Getenv("PORT"))
 }
